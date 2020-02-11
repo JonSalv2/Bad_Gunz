@@ -13,5 +13,7 @@ UCLASS()
 class BADGUNZ_API ABadGunzGameModeBase : public AGameModeBase
 {
 	GENERATED_BODY()
+
+		virtual void StartPlay() override;
 	
 };
