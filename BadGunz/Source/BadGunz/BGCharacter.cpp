@@ -31,7 +31,7 @@ void ABGCharacter::Tick(float DeltaTime)
 
 }
 
-// Called to bind functionality to input
+// Called to bind functionality to input, Make sure to also implement 
 void ABGCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
@@ -44,6 +44,9 @@ void ABGCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 	PlayerInputComponent->BindAxis("Turn", this, &ABGCharacter::AddControllerYawInput);
 	PlayerInputComponent->BindAxis("LookUp", this, &ABGCharacter::AddControllerPitchInput);
 
+	// Set up "action" bindings.
+	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ABGCharacter::StartJump);
+	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ABGCharacter::StopJump);
 
 }
 
@@ -59,4 +62,14 @@ void ABGCharacter::MoveRight(float Value)
 	// Find out which way is "right" and record that the player wants to move that way.
 	FVector Direction = FRotationMatrix(Controller->GetControlRotation()).GetScaledAxis(EAxis::Y);
 	AddMovementInput(Direction, Value);
+}
+
+void ABGCharacter::StartJump()
+{
+	bPressedJump = true;
+}
+
+void ABGCharacter::StopJump()
+{
+	bPressedJump = false;
 }
