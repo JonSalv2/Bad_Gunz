@@ -2,9 +2,11 @@
 
 #pragma once
 
+#include "Camera/CameraComponent.h"
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "BGCharacter.generated.h"
+
 
 UCLASS()
 class BADGUNZ_API ABGCharacter : public ACharacter
@@ -19,15 +21,16 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-public:	
+public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
-	/* Handles input for moving forward and backward. 
-	Ya dude this is literally eat holy fuck fuck we wasted time lol*/
+	/* Handles input for moving forward and backward.
+	Ya dude this is literally eat holy fuck fuck we wasted time lol */
+
 	UFUNCTION()
 		void MoveForward(float Value);
 
@@ -42,4 +45,9 @@ public:
 	// Clears jump flag when key is released.
 	UFUNCTION()
 		void StopJump();
+
+	// FPS camera.
+	UPROPERTY(VisibleAnywhere)
+		UCameraComponent* FPSCameraComponent;
+
 };
