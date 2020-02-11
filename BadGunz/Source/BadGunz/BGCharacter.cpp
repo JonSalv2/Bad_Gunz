@@ -39,6 +39,12 @@ void ABGCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 	// Set up "movement" bindings.
 	PlayerInputComponent->BindAxis("MoveForward", this, &ABGCharacter::MoveForward);
 	PlayerInputComponent->BindAxis("MoveRight", this, &ABGCharacter::MoveRight);
+
+	// Set up "look" bindings.
+	PlayerInputComponent->BindAxis("Turn", this, &ABGCharacter::AddControllerYawInput);
+	PlayerInputComponent->BindAxis("LookUp", this, &ABGCharacter::AddControllerPitchInput);
+
+
 }
 
 void ABGCharacter::MoveForward(float Value)
