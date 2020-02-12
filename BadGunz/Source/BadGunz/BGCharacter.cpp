@@ -21,16 +21,17 @@ ABGCharacter::ABGCharacter()
 
 	// Create a first person mesh component for the owning player.
 	FPSMesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("FirstPersonMesh"));
+
 	// Only the owning player sees this mesh.
 	FPSMesh->SetOnlyOwnerSee(true);
 	// Attach the FPS mesh to the FPS camera.
 	FPSMesh->SetupAttachment(FPSCameraComponent);
+
 	// Disable some environmental shadowing to preserve the illusion of having a single mesh.
 	FPSMesh->bCastDynamicShadow = false;
 	FPSMesh->CastShadow = false;
 
-	// The owning player doesn't see the regular (third-person) body mesh.
-	GetMesh()->SetOwnerNoSee(true);
+	
 
 }
 
@@ -44,6 +45,9 @@ void ABGCharacter::BeginPlay()
 		// Put up a debug message for five seconds. The -1 "Key" value (first argument) indicates that we will never need to update or refresh this message.
 		GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Red, TEXT("We are using BGCharacter and a lot of lube."));
 	}
+
+	// The owning player doesn't see the regular (third-person) body mesh.
+	GetMesh()->SetOwnerNoSee(true);
 }
 
 // Called every frame
