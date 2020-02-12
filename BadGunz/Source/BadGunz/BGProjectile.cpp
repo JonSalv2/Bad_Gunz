@@ -29,15 +29,16 @@ ABGProjectile::ABGProjectile()
 	ProjectileMovementComponent->bShouldBounce = true;
 	ProjectileMovementComponent->Bounciness = 0.3f;
 
-	// Die after 3 seconds.
-	InitialLifeSpan = 3.0f;
+	
+	
 }
 
 // Called when the game starts or when spawned
 void ABGProjectile::BeginPlay()
 {
 	Super::BeginPlay();
-	
+	// Die after 3 seconds.
+	SetLifeSpan(3.f);
 }
 
 // Called every frame
