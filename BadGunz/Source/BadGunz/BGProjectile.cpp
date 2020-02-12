@@ -12,8 +12,11 @@ ABGProjectile::ABGProjectile()
 	// Use a sphere as a simple collision representation.
 	CollisionComponent = CreateDefaultSubobject<USphereComponent>(TEXT("SphereComponent"));
 	CollisionComponent->BodyInstance.SetCollisionProfileName(TEXT("Projectile"));
+	CollisionComponent->OnComponentHit.AddDynamic(this, &ABGProjectile::OnHit);
+
 	// Set the sphere's collision radius.
 	CollisionComponent->InitSphereRadius(15.0f);
+
 	// Set the root component to be the collision component.
 	RootComponent = CollisionComponent;
 
@@ -48,4 +51,13 @@ void ABGProjectile::Tick(float DeltaTime)
 void ABGProjectile::FireInDirection(const FVector& ShootDirection)
 {
 	ProjectileMovementComponent->Velocity = ShootDirection * ProjectileMovementComponent->InitialSpeed;
+}
+
+// Function that is called when the projectile hits something.
+void ABGProjectile::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, FVector NormalImpulse, const FHitResult& Hit)
+{
+	if (OtherActor != this && OtherComponent->IsSimulatingPhysics())
+	{
+		OtherComponent->AddImpulseAtLocation(ProjectileMovementComponent->Velocity * 100.0f, Hit.ImpactPoint);
+	}
 }
