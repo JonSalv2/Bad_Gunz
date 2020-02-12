@@ -11,6 +11,7 @@ ABGProjectile::ABGProjectile()
 
 	// Use a sphere as a simple collision representation.
 	CollisionComponent = CreateDefaultSubobject<USphereComponent>(TEXT("SphereComponent"));
+	CollisionComponent->BodyInstance.SetCollisionProfileName(TEXT("Projectile"));
 	// Set the sphere's collision radius.
 	CollisionComponent->InitSphereRadius(15.0f);
 	// Set the root component to be the collision component.
@@ -24,6 +25,9 @@ ABGProjectile::ABGProjectile()
 	ProjectileMovementComponent->bRotationFollowsVelocity = true;
 	ProjectileMovementComponent->bShouldBounce = true;
 	ProjectileMovementComponent->Bounciness = 0.3f;
+
+	// Die after 3 seconds.
+	InitialLifeSpan = 3.0f;
 }
 
 // Called when the game starts or when spawned
