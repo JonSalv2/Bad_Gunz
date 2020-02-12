@@ -82,4 +82,6 @@ DerivedDataCache/*
 */DerivedDataCache
 */Intermediate
 */Saved
-BadGunz/Content/
+BadGunz/Content/Maps
+BadGunz/Content/Meshes
+BadGunz/Content/Developers
