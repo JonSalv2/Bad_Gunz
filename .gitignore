@@ -1,6 +1,9 @@
 # Visual Studio 2015 user specific files
 .vs/
- 
+
+#Google drive
+*.driveupload
+
 # Compiled Object files
 *.slo
 *.lo
@@ -77,6 +80,7 @@ DerivedDataCache/*
 ###################
 # Generated files #
 ###################
+
 */Build
 */Binaries
 */DerivedDataCache
@@ -86,3 +90,4 @@ BadGunz/Content/Maps
 BadGunz/Content/Meshes
 BadGunz/Content/Developers
 BadGunz/Content/HUD
+BaSGunz/Content/Animations
