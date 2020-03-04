@@ -58,7 +58,7 @@ void ABGCharacter::Tick(float DeltaTime)
 
 }
 
-// Called to bind functionality to input, Make sure to also implement 
+// Called to bind functionality to input, Make sure to also implement in settings
 void ABGCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
